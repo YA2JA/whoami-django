@@ -2,8 +2,9 @@ from django.shortcuts import render
 from random import choice
 
 def index(request):
+
     base = "1234567890AZERTYUIOPQSDFGHJKLMWXCVBN?!:@azertyuiopqsdfghjklmwxcvbn."
-    word = "".join(choice(base) for i in range(15))
+    word = request.META["USERNAME"]+"\nrequest number:%s "%request_counter
     title = get_client_ip(request)
     content  =  get_meta(request)
     context = {
@@ -29,6 +30,10 @@ def get_meta(request):
         else:
             text += "%s:%s\n"%(i,request.META.get(i))
     return text
+
+def about_os(request):
+    info = request.META["HTTP_USER_AGENT"]
+    return info[info.find("(")+1:info.find(")")]
 
 def six(request):
     base = "1234567890"
