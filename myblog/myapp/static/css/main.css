@@ -1,18 +1,20 @@
 body{
-    background-color: #e1ebf3;
+    background-color: #e1ebf0;
 }
 
 .page_title{
     text-align: center;
 }
 
-.info_bloc {
+.info_bloc{
     margin-left: auto;
     margin-right: auto;
-    margin-top:15%;
-    max-width: 220px;
-    background-color: #FFFF
+    margin-top:5%;
+    max-width: 30%;
+    background-color: white;
+    border: 5pt dashed  red;
 }
 .info_bloc p{
     text-align: center;
+    max-width: 90%;
 }

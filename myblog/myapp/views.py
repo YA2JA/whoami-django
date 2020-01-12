@@ -5,14 +5,16 @@ from random import randint
 
 def index(request):
     user = Client(request)
+    N = range(randint(1,5))
     base = "1234567890AZERTYUIOPQSDFGHJKLMWXCVBN?!:@azertyuiopqsdfghjklmwxcvbn."
     word = "Hello " + request.META.get("USERNAME")+"\n%s"%randint(0,10**6)
     title = get_client_ip(request)+"\n%s"%word
     content  = user.get_web_agent()
     context = {
-        "title": title,
+        "title": len(N),
         "word": title,
-        "content": content
+        "content": content,
+        "N":N,
     }
     return render(request, "myapp/index.html", context)
 
