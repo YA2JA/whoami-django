@@ -23,7 +23,7 @@ class Client():
         info = self.META['HTTP_USER_AGENT']
         return info[info.find("(")+1:info.find(")")]
 
-    def __get_brower__(self):
+    def __get_browser__(self):
         browsers = ("Edge", "Opera", "OPR", "Chrome", "Trident","Firefox", "Safari")
         for i in browsers:
             if i in self.META['HTTP_USER_AGENT']:
@@ -34,3 +34,6 @@ class Client():
 
     def __get_ip__(self): 
         return self.META.get('HTTP_X_FORWARDED_FOR') or self.META.get('REMOTE_ADDR')
+
+    def __other_info__(self):
+        pass
