@@ -1,39 +1,51 @@
 # from django.contrib.gis.geoip import GeoIP
 from django.shortcuts import render
 from random import randint
-
+import re
 
 def index(request):
     user = Client(request)
     context = {
         "title": "hello",
         "word": user.ip,
-        "content": user.browser,
+        "info": (user.os, user.browser),
     }
     return render(request, "myapp/index.html", context)
 
 class Client():
     def __init__(self, request):
         self.META = request.META
-        self.os = self.__get_os__()
-        self.browser = self.__get_brower__()
-        self.ip = self.__get_ip__()
+        self.os = self._get_os()
+        self.browser = self._get_browser()
+        self.ip = self._get_ip()
 
-    def __get_os__(self):
-        info = self.META['HTTP_USER_AGENT']
-        return info[info.find("(")+1:info.find(")")]
+    def _get_os(self):
+        os_name = {
+            "Android":'Android',
+            "Windows NT 10.0":"Windows 10",
+            "Windows NT 6.3":"Windows 8.1",
+            "Windows NT 6.2":"Windows 8",
+            "Windows NT 6.1":"Windows 7",
+            "Linux":"Linux",
+            ("Mac" or "Hello"):"Mac OS"}#():"hi"
 
-    def __get_browser__(self):
+        for i in os_name.keys():
+            if i in self.META['HTTP_USER_AGENT']:
+                return os_name[i]
+        return "unknown"
+
+    def _get_browser(self):
         browsers = ("Edge", "Opera", "OPR", "Chrome", "Trident","Firefox", "Safari")
         for i in browsers:
             if i in self.META['HTTP_USER_AGENT']:
                 if i == "OPR": i = "Opera"
                 if i == "Trident": i = "Intertet Explorer"
                 return i
-        return "Your browser's unknown"
+        return "unknown"
 
-    def __get_ip__(self): 
+    def _get_ip(self): 
         return self.META.get('HTTP_X_FORWARDED_FOR') or self.META.get('REMOTE_ADDR')
 
-    def __other_info__(self):
+    def _other_info(self):
         pass
+        #https://ipapi.com/ip_api.php?ip=
