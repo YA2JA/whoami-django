@@ -1,16 +1,18 @@
 from django.shortcuts import render
 
 import json
-import requests
 import re
+import requests
+
 
 
 def index(request):
     user = Client(request)
     context = {
-        "title": "hello",
-        "word": user.ip,
-        "info": ("OS: "+user.os, "Browser: "+user.browser, user.location.get("city")),
+        "title": "whoami",
+        "user_ip": user.ip,
+        "system_about": ("OS: "+user.os, "Browser: "+user.browser),
+        "location":("Contry: "+user.location.get("countryName"), "City: "+user.location.get("city"))
     }
     return render(request, "myapp/index.html", context)
 

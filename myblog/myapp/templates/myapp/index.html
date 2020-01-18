@@ -6,12 +6,25 @@
 	<title>{{title}}</title>
 </head>
 <body>
-	<pre><h1 class = "page_title">{{word}}</h1></pre>
+	<pre><h1 class = "page_title">{{user_ip}}</h1></pre>
 
-    <div class="info_bloc">
-        {%for i in info%}
+    <div class="about">
+
+        <div class="system">
+            <h3>Systeme info</h3>
+            {%for i in system_about%}
             <p>{{i}}</p>
-        {%endfor%}
+            {%endfor%}
+        </div>
+        <br>
+        <div class="location">
+            <h3>Location</h3>
+            {%for i in location%}
+            <p>{{i}}</p>
+            {%endfor%}
+        </div>
+
+
     </div>
 
 </body>

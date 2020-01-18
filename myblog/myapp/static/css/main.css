@@ -1,12 +1,14 @@
 body{
     background-color: #e1ebf0;
 }
-
-.page_title{
+h1{
+    text-align: center;
+}
+h3{
     text-align: center;
 }
 
-.info_bloc{
+div.about{
     margin-left: auto;
     margin-right: auto;
     margin-top:5%;
@@ -14,7 +16,7 @@ body{
     background-color: white;
     border: 5pt dashed  red;
 }
-.info_bloc p{
+
+div{
     text-align: center;
-    max-width: 90%;
 }
