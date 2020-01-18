@@ -6,7 +6,7 @@ import requests
 
 
 
-def index(request):
+def main(request):
     user = Client(request)
     context = {
         "title": "whoami",
@@ -28,7 +28,7 @@ class Client():
 
         mac_names = "Mac" or "Macintosh" or "Mac_PowerPC"
         linux_names = "Linux" or "X11"
-        ios_names = "iPhone" or "iPad"or "iPod"
+        ios_names = "iPhone" or "iPad" or "iPod"
 
         os_name = {
             "Android":'Android',
@@ -62,4 +62,4 @@ class Client():
 
     def _about_ip(self):
         return json.loads(requests.get("http://api.db-ip.com/v2/free/%s"%self.ip).text)
-        #https://ipapi.com/ip_api.php?ip=
+        #also can be use https://ipapi.com/ip_api.php?ip=
