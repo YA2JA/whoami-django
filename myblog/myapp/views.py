@@ -10,7 +10,7 @@ def index(request):
     context = {
         "title": "hello",
         "word": user.ip,
-        "info": (user.os, user.browser, user.location.get("city")),
+        "info": ("OS: "+user.os, "Browser: "+user.browser, user.location.get("city")),
     }
     return render(request, "myapp/index.html", context)
 
@@ -23,14 +23,22 @@ class Client():
         self.location = self._about_ip()
 
     def _get_os(self):
+
+        mac_names = "Mac" or "Macintosh" or "Mac_PowerPC"
+        linux_names = "Linux" or "X11"
+        ios_names = "iPhone" or "iPad"or "iPod"
+
         os_name = {
             "Android":'Android',
+            "CrOS":"Chrome OS",
             "Windows NT 10.0":"Windows 10",
             "Windows NT 6.3":"Windows 8.1",
             "Windows NT 6.2":"Windows 8",
             "Windows NT 6.1":"Windows 7",
-            "Linux":"Linux",
-            ("Mac" or "Hello"):"Mac OS"}
+            linux_names:"Linux",
+            mac_names:"Mac OS",
+            ios_names:"IOS",
+            }
 
         for i in os_name.keys():
             if i in self.META['HTTP_USER_AGENT']:
