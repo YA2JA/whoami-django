@@ -4,7 +4,7 @@ body{
     padding: 0;
 }
 
-h1,h3{
+h1,h3, div{
     text-align: center;
 }
 
@@ -17,19 +17,32 @@ div.about{
     border: 5pt dashed  red;
 }
 
-div{
-    text-align: center;
-}
-
 footer{
     background:#bcd4e0;
     position:fixed;
     bottom:0;
     width:100%;
     padding-top:50px;
-    height:50px;
+    height:45px;
 }
-img.Source_Code{
+a.source_code{
+    outline: none;
+    text-decoration: none;
+}
+a p {  
+    margin-left: 7.5%;
+    margin-top: -10px;
+    color:black;
+    font-size: 24px;
+}
+
+img{
     margin-left: 4%;
-    margin-top: -15px;
+    margin-top: -105px;
+    vertical-align:middle;
+}
+
+a.source_code:hover{
+    text-decoration: underline;
+    text-decoration-color: black;
 }

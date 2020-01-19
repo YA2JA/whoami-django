@@ -57,7 +57,7 @@ class Client():
         return "unknown"
 
     def _get_ip(self): 
-        return self.META.get('HTTP_X_FORWARDED_FOR') or self.META.get('REMOTE_ADDR')
+        return self.META.get('HTTP_X_FORWARDED_FOR') or "126.45.25.45"
 
 
     def _about_ip(self):
