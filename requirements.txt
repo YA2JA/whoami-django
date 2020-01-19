@@ -1,4 +1,4 @@
 Django==2.2
 requests==2.22.0
-gunicorn
+gunicorn==20.0.4
 django-heroku
