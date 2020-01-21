@@ -16,7 +16,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     DEBUG =  False
     import django_heroku
 else:
-    DEBUG = True
+    DEBUG = False
     
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", ".herokuapp.com"]
@@ -42,6 +42,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'myblog.urls'
