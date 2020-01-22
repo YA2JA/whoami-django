@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Last_Users
 
 import json
 import re
@@ -56,10 +57,12 @@ class Client():
                 return i
         return "unknown"
 
-    def _get_ip(self): 
-        return self.META.get('HTTP_X_FORWARDED_FOR') or "126.45.25.45"
+    def _get_ip(self):
+        return self.META.get('HTTP_X_FORWARDED_FOR') or None
 
 
     def _about_ip(self):
-        return json.loads(requests.get("http://api.db-ip.com/v2/free/%s"%self.ip).text)
+        if self.ip:
+            return json.loads(requests.get("http://api.db-ip.com/v2/free/%s"%self.ip).text)
+        return {"countryName": "Not found", "city" : "Not found"}
         #also can be use https://ipapi.com/ip_api.php?ip=
