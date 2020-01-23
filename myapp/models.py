@@ -1,8 +1,7 @@
 from django.db import models
 
-class Last_Users(models.Model):
-    IP = models.CharField(max_length = 15)
+class Last_User(models.Model):
+    ip = models.CharField(max_length = 32)
 
     def __str__(self):
-        return self.IP
-    
+        return self.ip

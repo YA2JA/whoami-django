@@ -1,10 +1,10 @@
 from django.shortcuts import render
-from .models import Last_Users
+from .models import Last_User
+from .forms import IpForm
 
 import json
 import re
 import requests
-
 
 
 def main(request):
@@ -15,6 +15,13 @@ def main(request):
         "system_about": ("OS: "+user.os, "Browser: "+user.browser),
         "location":("Contry: "+user.location.get("countryName"), "City: "+user.location.get("city"))
     }
+
+    print(Last_User.objects.all())
+    if not user.ip in Last_User.objects.all() and not isinstance(user.ip, type(None)):
+        new_ip = Last_User()
+        new_ip.ip =  user.ip
+        new_ip.save()
+
     return render(request, "myapp/index.html", context)
 
 class Client():
@@ -62,7 +69,7 @@ class Client():
 
 
     def _about_ip(self):
-        if self.ip:
+        if  False:#self.ip:
             return json.loads(requests.get("http://api.db-ip.com/v2/free/%s"%self.ip).text)
         return {"countryName": "Not found", "city" : "Not found"}
         #also can be use https://ipapi.com/ip_api.php?ip=
