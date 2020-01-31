@@ -8,7 +8,6 @@ import re
 import requests
 
 
-
 def main(request):
     user = Client(request)
     context = {
@@ -17,16 +16,46 @@ def main(request):
     "system_about": ("OS: "+user.os, "Browser: "+user.browser),
     "location":("Contry: "+user.location.get("countryName"), "City: "+user.location.get("city"))
     }
-    add_to_history(user.ip)
+    x = History()
+    x.add_ip(user.ip)
     return render(request, "myapp/index.html", context)
 
-def add_to_history(user_ip, _id = 1):
-    if user_ip not in Last_User.objects.all() and isinstance(user_ip, str):
-        new_user = Last_User.objects.get(id = _id)
+
+class History():
+    def __init__(self):
+        self.data_base = Last_User.objects
+        self.ip_list = [i["ip"] for i in self.data_base.all().values()]
+
+    def _add_new_ip(self, user_ip, _id = 1):
+        new_user = self.data_base.get(id = _id)
         new_user.ip =  user_ip
         new_user.save()
-        
+
+    def _moove_cell(self, _start:int = None):
+        start = _start or len(self.ip_list)
+
+        if not isinstance(_start, type(None)):
+            update = self.data_base.get(id = 1)
+            update.ip = self.data_base.get(id = start).ip
+
+        for i in range(start, 1, -1):
+            val = self.data_base.get(id = i)
+            val.ip = self.data_base.get(id = i-1).ip
+            val.save()
+
+        if not isinstance(_start, type(None)):
+            update.save()
+
+    def add_ip(self, user_ip):
+        if user_ip not in self.ip_list and isinstance(user_ip, str):
+            self._moove_cell()
+            self._add_new_ip(user_ip)
+        else:
+            ip_id = self.ip_list.index(user_ip)+1
+            self._moove_cell(ip_id)
+
 class Client():
+
     def __init__(self, request):
         self.META = request.META
         self.os = self._get_os()
@@ -35,7 +64,6 @@ class Client():
         self.location = self._about_ip()
 
     def _get_os(self)->str:
-
         mac_names = "Mac" or "Macintosh" or "Mac_PowerPC"
         linux_names = "Linux" or "X11"
         ios_names = "iPhone" or "iPad" or "iPod"
@@ -67,11 +95,10 @@ class Client():
         return "unknown"
 
     def _get_ip(self) -> str:
-        return self.META.get('HTTP_X_FORWARDED_FOR') or "%s.%s.%s.%s"%(randint(0,255),randint(100,255), randint(1,255),randint(0,255))
+        return self.META.get('HTTP_X_FORWARDED_FOR') or "121.73.193.134"#"{0}.{1}.{2}.{3}".format(*(randint(0,255) for i in range(4)))
 
     def _about_ip(self) -> str:
-        responce = json.loads(requests.get("http://api.db-ip.com/v2/free/%s"%self.ip).text)
-        if  None != responce.get("countryName"):
-            return responce
+        if False:#isinstance(self.ip, str):
+            return json.loads(requests.get("http://api.db-ip.com/v2/free/%s"%self.ip).text)
         return {"countryName": "Not found", "city" : "Not found"}
         #also can be use https://ipapi.com/ip_api.php?ip=
