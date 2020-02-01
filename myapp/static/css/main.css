@@ -1,5 +1,5 @@
 body{
-    background-color: #d4e4ec;
+    background-color: #e1ebf0;
     margin: 0;
     padding: 0;
 }
@@ -8,38 +8,12 @@ h1,h3, div{
     text-align: center;
 }
 
-.about{
-    float: left;
-    margin-left: 5%;
+div.about{
+    margin: left;
     margin-top:5%;
-    min-width: 25%;
-    height: 250px;
-    background-color:#e0ecf2;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-}
-
-.last_users{
-    float: right;
-    min-width: 25%;
-    margin-right:5%;
-    margin-top:5%;
-    background-color:#e0ecf2;
-    height: 250px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    
-}
-
-.ip_box {
-    height: 50px;
-    width: 400px;
-    display: table-cell;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    vertical-align: middle;
-}
-
-.ip_box:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    max-width: 30%;
+    background-color: white;
+    border: 5pt dashed  red;
 }
 
 footer{
@@ -71,13 +45,4 @@ img{
 a.source_code:hover{
     text-decoration: underline;
     text-decoration-color: black;
-}
-
-.card-1 {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.card-1:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
