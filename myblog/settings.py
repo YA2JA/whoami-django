@@ -39,8 +39,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    
-
 ]
 
 
@@ -123,9 +121,6 @@ if DEBUG:
     MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
 
 STATIC_URL = '/static/'
-
-
-
 
 # Activate Django-Heroku.
 if os.environ.get('ENV') == 'PRODUCTION': django_heroku.settings(locals())
