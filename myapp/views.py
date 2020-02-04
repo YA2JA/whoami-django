@@ -14,45 +14,39 @@ def main(request):
     "title": "whoami",
     "user_ip": user.ip,
     "system_about": ("OS: "+user.os, "Browser: "+user.browser),
-    "location":("Contry: "+user.location.get("countryName"), "City: "+user.location.get("city"))
+    "location":("Contry: "+user.location.get("countryName"), "City: "+user.location.get("city")),
+    "last_users":last_users_list(),
     }
-    x = History()
-    x.add_ip(user.ip)
+    Add_ip(user.ip)
     return render(request, "myapp/index.html", context)
 
+def last_users_list():
+    return [i["ip"] for i in Last_User.objects.all().values()]
 
-class History():
-    def __init__(self):
+class Add_ip():
+    def __init__(self, user_ip):
         self.data_base = Last_User.objects
-        self.ip_list = [i["ip"] for i in self.data_base.all().values()]
+        self.ip_list = last_users_list()
+
+        tomoove = self.ip_list.index(user_ip)+1 if user_ip in self.ip_list else len(self.ip_list)
+        self._moove_cell(tomoove)
+        self._add_new_ip(user_ip)
 
     def _add_new_ip(self, user_ip, _id = 1):
         new_user = self.data_base.get(id = _id)
         new_user.ip =  user_ip
         new_user.save()
 
-    def _moove_cell(self, _start:int = None):
-        start = _start or len(self.ip_list)
-
-        if not isinstance(_start, type(None)):
-            update = self.data_base.get(id = 1)
-            update.ip = self.data_base.get(id = start).ip
+    def _moove_cell(self, start):
+        update = self.data_base.get(id = 1)
+        update.ip = self.data_base.get(id = start).ip
 
         for i in range(start, 1, -1):
             val = self.data_base.get(id = i)
             val.ip = self.data_base.get(id = i-1).ip
             val.save()
 
-        if not isinstance(_start, type(None)):
-            update.save()
-
-    def add_ip(self, user_ip):
-        if user_ip not in self.ip_list and isinstance(user_ip, str):
-            self._moove_cell()
-            self._add_new_ip(user_ip)
-        else:
-            ip_id = self.ip_list.index(user_ip)+1
-            self._moove_cell(ip_id)
+        update.save()
 
 class Client():
 
@@ -98,7 +92,7 @@ class Client():
         return self.META.get('HTTP_X_FORWARDED_FOR') or "121.73.193.134"#"{0}.{1}.{2}.{3}".format(*(randint(0,255) for i in range(4)))
 
     def _about_ip(self) -> str:
-        if False:#isinstance(self.ip, str):
+        if isinstance(self.ip, str):
             return json.loads(requests.get("http://api.db-ip.com/v2/free/%s"%self.ip).text)
         return {"countryName": "Not found", "city" : "Not found"}
         #also can be use https://ipapi.com/ip_api.php?ip=

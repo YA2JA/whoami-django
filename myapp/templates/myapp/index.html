@@ -9,7 +9,6 @@
 
 	<pre><h1 class = "page_title">{{user_ip}}</h1></pre>
     <div class="about">
-
         <div class="system">
             <h3>Systeme info:</h3>
             {%for i in system_about%}
@@ -23,6 +22,13 @@
             <p>{{i}}</p>
             {%endfor%}
         </div>
+    </div>
+
+    <div class="last_users_list">
+        <h3>Last visitors</h3>
+        {%for i in last_users%}
+            <div class="last_user">{{i}}</div><br>
+        {%endfor%}
     </div>
 <footer>
     <a href = "https://github.com/YA2JA/whoami-django" title="Source code" class = "source_code">

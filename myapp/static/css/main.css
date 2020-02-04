@@ -1,5 +1,5 @@
 body{
-    background-color: #e1ebf0;
+    background-color: #cfdde6;
     margin: 0;
     padding: 0;
 }
@@ -9,11 +9,32 @@ h1,h3, div{
 }
 
 div.about{
-    margin: left;
+    float: left;
     margin-top:5%;
-    max-width: 30%;
-    background-color: white;
-    border: 5pt dashed  red;
+    width: 25%;
+    margin-left: 10%;
+    background:#d1e0ea;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+div.last_users_list{
+    float: right;
+    margin-top:5%;
+    width: 25%;
+    margin-right: 10%;
+    background: #d1e0ea;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+div.last_user{
+    padding: 16px 0px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    background-color: #5b9ecb1c;
+}
+
+div.last_user:hover{
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,.2);
 }
 
 footer{
@@ -23,10 +44,6 @@ footer{
     width:100%;
     padding-top:50px;
     height:45px;
-}
-a.source_code{
-    outline: none;
-    text-decoration: none;
 }
 
 a p {  
@@ -40,6 +57,11 @@ img{
     margin-left: 60px;
     margin-top: -105px;
     vertical-align:middle;
+}
+
+a.source_code{
+    outline: none;
+    text-decoration: none;
 }
 
 a.source_code:hover{
