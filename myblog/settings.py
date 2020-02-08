@@ -110,7 +110,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-if DEBUG:
+if not DEBUG:
+    import django_heroku
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
     STATICFILES_DIRS = (
@@ -123,4 +124,5 @@ if DEBUG:
 STATIC_URL = '/static/'
 
 # Activate Django-Heroku.
-if os.environ.get('ENV') == 'PRODUCTION': django_heroku.settings(locals())
+if not DEBUG:
+    django_heroku.settings(locals())
