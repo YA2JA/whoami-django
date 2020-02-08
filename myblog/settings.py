@@ -38,10 +38,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-
-
 
 ROOT_URLCONF = 'myblog.urls'
 
@@ -66,7 +64,6 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -117,8 +114,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     )
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 
