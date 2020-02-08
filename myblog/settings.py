@@ -110,19 +110,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-if not DEBUG:
-    import django_heroku
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-    STATICFILES_DIRS = (
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     )
 
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
 
 STATIC_URL = '/static/'
 
 # Activate Django-Heroku.
-if not DEBUG:
-    django_heroku.settings(locals())
+if os.environ.get('ENV') == 'PRODUCTION': django_heroku.settings(locals())
