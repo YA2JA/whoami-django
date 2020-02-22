@@ -1,11 +1,10 @@
 from django.shortcuts import render
 from .models import Last_User
-from .forms import IpForm
-from random import randint
 
 import json
 import re
 import requests
+import sqlite3
 
 def main(request):
     user = Client(request)
@@ -20,8 +19,7 @@ def main(request):
     return render(request, "myapp/index.html", context)
 
 def last_users_list():
-    """
-    """
+    """this fonction is retunnig all ips from the data base"""
     return [i["ip"] for i in Last_User.objects.all().values()]
 
 class Add_ip():
@@ -48,6 +46,18 @@ class Add_ip():
         new_user.ip =  user_ip
         new_user.save()
 
+    def __db_ids_order(self):
+        """this function's correcting ids order
+        if the new module object was created with new id which is more should be"""
+        conn = sqlite3.connect('db.sqlite3')
+        c = conn.cursor()
+        users_ip = c.execute("SELECT id FROM myapp_last_user").fetchall()
+        id_list = [i for j in users_ip for i in j]
+        if 1 not in id_list:
+            for i in range(1, len(id_list)+1):
+                c.execute('UPDATE myapp_last_user SET id = %s WHERE id = %s '%(i, id_list[i-1]))
+                conn.commit()
+
     def _moove_cell(self, start):
         """This function's shifting value from start 
             to the top of list in data base
@@ -56,6 +66,7 @@ class Add_ip():
             or
             x = len([1,2,3,4,5])
             [1,2,3,4,5] -> _moove_cell(x) -> [5,1,2,3,4]"""
+        self.__db_ids_order()
         update = self.data_base.get(id = 1)
         update.ip = self.data_base.get(id = start).ip
 
@@ -63,6 +74,7 @@ class Add_ip():
             self._add_new_ip(self.data_base.get(id = i-1).ip, i)
 
         update.save()
+    
 
 class Client():
     def __init__(self, request):
