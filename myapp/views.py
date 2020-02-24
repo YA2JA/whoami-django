@@ -129,7 +129,7 @@ class Client():
 
     def _get_ip(self) -> str:
         """ This function's retunring client ip,
-            if connection's local returned ip is 121.73.193.134"""
+            if connection's local returned ip is 121.73.193.134(this ip's completely interim)"""
         return self.META.get('HTTP_X_FORWARDED_FOR') or "121.73.193.134"
 
     def _about_ip(self) -> dict:
