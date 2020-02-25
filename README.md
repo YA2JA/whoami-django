@@ -13,6 +13,7 @@
   ```
 ***
 <br>
+
 ## Install and run virtualenv. not mandatory
 ### Linux
 Install:
@@ -24,7 +25,6 @@ Run:
 virtualenv env_dir_name
 source env_dir_name/bin/activate
 ```
-***
 
 ### Mac
 Install:
@@ -36,7 +36,7 @@ Run:
 virtualenv env_dir_name
 source env_dir_name/bin/activate
 ```
-***
+
 ### Windows
 Install:
 ```
@@ -50,8 +50,8 @@ env_dir_name\Scripts\activate.bat
 ***
 
 ## Run on local machine
-  **I recomend to do that in virtual envirenement, [here instructions](#install-and-run-virtualenv)**<br>, [for more info](https://pythontips.com/2013/07/30/what-is-virtualenv/)
-  Download the project on your machine and open terminal in the project directory
+**I recomend to do that in virtual envirenement [here instructions](#install-and-run-virtualenv)**,[for more info](https://pythontips.com/2013/07/30/what-is-virtualenv/) <br>
+ Download the project on your machine and open terminal in the project directory
   Install project dependency:
   ```
   pip insall -r requirements.txt
