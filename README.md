@@ -51,12 +51,12 @@ env_dir_name\Scripts\activate.bat
 
 ## Run on local machine
 **I recomend to do that in virtual envirenement [here instructions](#install-and-run-virtualenv-not-mandatory)**, [for more info](https://pythontips.com/2013/07/30/what-is-virtualenv/) <br>
- Download the project on your machine and open terminal in the project directory
-  Install project dependency:
+ [Download](#download-and-open--project) the project on your machine and open terminal in the project directory <br><br>
+  Install project dependencys:
   ```
   pip insall -r requirements.txt
   ```
-  Now you can run it! by writing
+  Now you can run it!
   ```
   manage.py runserver
   ```
@@ -65,7 +65,7 @@ env_dir_name\Scripts\activate.bat
 <br>
 
 ## Run on heroku
-  Download the project on your machine <br>
+  [Download](#download-and-open--project) the project on your machine <br>
   
   Prepare heroku server:
   ```
