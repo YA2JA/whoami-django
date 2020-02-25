@@ -54,7 +54,7 @@ env_dir_name\Scripts\activate.bat
  [Download](#download-and-open--project) the project on your machine and open terminal in the project directory <br><br>
   Install project dependencys:
   ```
-  pip insall -r requirements.txt
+  pip install -r requirements.txt
   ```
   Now you can run it!
   ```
