@@ -2,21 +2,61 @@
 **[Run it on local machine](#run-on-local-machine)**<br>
 **[Run it on heroku](#run-on-heroku)**<br>
 
-## Download the project:
+## Download and open  project:
+  Download:
   ```
   git clone https://github.com/YA2JA/whoami-django.git
+  ```
+  to open directory:
+  ```
+  cd whoami-django
   ```
 ***
 <br>
 
+## Install and run virtualenv. not mandatory
+### Linux
+Install:
+```
+sudo pip install virtualenv
+```
+Run:
+```
+virtualenv env_dir_name
+source env_dir_name/bin/activate
+```
+
+### Mac
+Install:
+```
+pip install virtualenv
+```
+Run:
+```
+virtualenv env_dir_name
+source env_dir_name/bin/activate
+```
+
+### Windows
+Install:
+```
+pip install virtualenv
+```
+Run:
+```
+python -m venv env_dir_name
+env_dir_name\Scripts\activate.bat
+```
+***
+
 ## Run on local machine
-  **I recomend to do that in virtual envirenement [here you can lern more](https://uoa-eresearch.github.io/eresearch-cookbook/recipe/2014/11/26/python-virtual-env/)**<br>
-  Download the project on your machine and open terminal in the project directory
-  Install project dependency:
+**I recomend to do that in virtual envirenement [here instructions](#install-and-run-virtualenv-not-mandatory)**, [for more info](https://pythontips.com/2013/07/30/what-is-virtualenv/) <br>
+ [Download](#download-and-open--project) the project on your machine and open terminal in the project directory <br><br>
+  Install project dependencys:
   ```
   pip insall -r requirements.txt
   ```
-  Now you can run it! by writing
+  Now you can run it!
   ```
   manage.py runserver
   ```
@@ -25,7 +65,7 @@
 <br>
 
 ## Run on heroku
-  Download the project on your machine <br>
+  [Download](#download-and-open--project) the project on your machine <br>
   
   Prepare heroku server:
   ```
@@ -37,3 +77,4 @@
   ```
   git push heroku master
   ```
+
