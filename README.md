@@ -1,7 +1,7 @@
 # whoami-django
 **[Run it on local machine](#run-on-local-machine)**<br>
 **[Run it on heroku](#run-on-heroku)**<br>
-##Site:https://whoami-django.herokuapp.com/
+## Site: https://whoami-django.herokuapp.com/
 ## Download and open  project:
   Download:
   ```
