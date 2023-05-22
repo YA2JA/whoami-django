@@ -1,5 +1,5 @@
 Django==2.2.27
-requests==2.22.0
+requests==2.31.0
 gunicorn==20.0.4
 django-heroku
 whitenoise
